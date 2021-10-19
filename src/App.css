@@ -1,0 +1,35 @@
+.main {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.control-container {
+    text-align: center;
+}
+
+.todo-container {
+    margin-top: 20px;
+    list-style: none;
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    border-bottom: 1px solid #ccc;
+}
+
+.todo-check {
+    margin-right: 20px;
+}
+
+.todo-check:checked + span {
+    text-decoration: line-through;
+}
+
+.todo-delete {
+    font-size: 18px;
+    color: red;
+    cursor: pointer;
+}
