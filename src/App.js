@@ -1,47 +1,26 @@
 import { TodoList, InputField } from 'components';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addTodo } from 'store/todoSlice';
 
 import './App.css';
 
 function App() {
-    const [todos, setTodos] = useState([]);
     const [text, setText] = useState('');
 
-    const onChangeTextHandler = (e) => setText(e.target.value);
-    const onAddHandler = () => {
-        if (!text.trim().length > 0) return;
+    const dispatch = useDispatch();
 
-        setTodos([
-            ...todos,
-            {
-                id: Date.now().toString(),
-                text,
-                complete: false,
-            },
-        ]);
-
+    const addTask = () => {
+        dispatch(addTodo({ text }));
         setText('');
     };
-    const onDeleteHandler = (id) => {
-        const filteredTodos = todos.filter((todo) => todo.id !== id);
-        setTodos(filteredTodos);
-    };
-    const onCompleteHandler = (id) => {
-        const editedTodos = todos.map((todo) => {
-            if (todo.id === id) {
-                todo.complete = !todo.complete;
-            }
 
-            return todo;
-        });
-
-        setTodos(editedTodos);
-    };
+    const onChangeTextHandler = (e) => setText(e.target.value);
 
     return (
         <div className="main">
-            <InputField text={text} onChangeTextHandler={onChangeTextHandler} onAddHandler={onAddHandler} />
-            <TodoList todos={todos} onDeleteHandler={onDeleteHandler} onCompleteHandler={onCompleteHandler} />
+            <InputField text={text} onChangeTextHandler={onChangeTextHandler} onAddHandler={addTask} />
+            <TodoList />
         </div>
     );
 }
