@@ -1,7 +1,7 @@
 import { useActions } from 'hooks/useActions';
 
-export const TodoItem = ({ id, complete, text }) => {
-    const { toggleTodoComplete, removeTodo } = useActions();
+export const TodoItem = ({ id, completed, title }) => {
+    const { toggleStatus, deleteTodo } = useActions();
 
     return (
         <li className="todo-item">
@@ -9,12 +9,12 @@ export const TodoItem = ({ id, complete, text }) => {
                 <input
                     className="todo-check"
                     type="checkbox"
-                    checked={complete}
-                    onChange={() => toggleTodoComplete({ id })}
+                    checked={completed}
+                    onChange={() => toggleStatus({ id })}
                 />
-                <span>{text}</span>
+                <span>{title}</span>
             </div>
-            <span className="todo-delete" onClick={() => removeTodo({ id })}>
+            <span className="todo-delete" onClick={() => deleteTodo({ id })}>
                 &times;
             </span>
         </li>
