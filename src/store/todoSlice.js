@@ -147,6 +147,6 @@ const todoSlice = createSlice({
     },
 });
 
-export const { actions } = todoSlice;
+const { actions } = todoSlice;
 
 export const { reducer } = todoSlice;
