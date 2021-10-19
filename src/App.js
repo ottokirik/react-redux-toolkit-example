@@ -1,17 +1,15 @@
 import { TodoList, InputField } from 'components';
+import { useActions } from 'hooks/useActions';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addTodo } from 'store/todoSlice';
 
 import './App.css';
 
 function App() {
     const [text, setText] = useState('');
-
-    const dispatch = useDispatch();
+    const { addTodo } = useActions();
 
     const addTask = () => {
-        dispatch(addTodo({ text }));
+        addTodo({ text });
         setText('');
     };
 

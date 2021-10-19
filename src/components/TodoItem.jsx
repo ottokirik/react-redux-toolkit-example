@@ -1,8 +1,7 @@
-import { useDispatch } from 'react-redux';
-import { removeTodo, toggleTodoComplete } from 'store/todoSlice';
+import { useActions } from 'hooks/useActions';
 
 export const TodoItem = ({ id, complete, text }) => {
-    const dispatch = useDispatch();
+    const { toggleTodoComplete, removeTodo } = useActions();
 
     return (
         <li className="todo-item">
@@ -11,11 +10,11 @@ export const TodoItem = ({ id, complete, text }) => {
                     className="todo-check"
                     type="checkbox"
                     checked={complete}
-                    onChange={() => dispatch(toggleTodoComplete({ id }))}
+                    onChange={() => toggleTodoComplete({ id })}
                 />
                 <span>{text}</span>
             </div>
-            <span className="todo-delete" onClick={() => dispatch(removeTodo({ id }))}>
+            <span className="todo-delete" onClick={() => removeTodo({ id })}>
                 &times;
             </span>
         </li>
